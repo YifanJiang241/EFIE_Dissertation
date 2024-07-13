@@ -1,0 +1,20 @@
+% Load the data from the file
+data = load('Efb_5_27.dat');
+
+% Separate the data into x and y components
+x = data(:, 1);
+y = data(:, 2);
+
+% Create a figure
+figure;
+
+% Plot the data with a thinner line
+plot(x, y, 'b-o','MarkerSize',2, 'LineWidth', 0.15); % Setting the LineWidth to 0.25 makes the line thinner
+
+% Add labels and title
+xlabel('X axis');
+ylabel('Y axis');
+title('Data Plot from Jf_m.dat with Thinner Line');
+
+% Add grid for better readability
+grid on;
