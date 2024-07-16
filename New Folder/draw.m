@@ -17,7 +17,7 @@ plot(x, y, 'b-o','MarkerSize',2, 'LineWidth', 0.15); % Setting the LineWidth to 
 
 hold on
 
-plot(x2, y2, 'r-o','MarkerSize',2, 'LineWidth', 0.15);
+%plot(x2, y2, 'r-o','MarkerSize',2, 'LineWidth', 0.15);
 % Add labels and title
 xlabel('X axis');
 ylabel('Y axis');

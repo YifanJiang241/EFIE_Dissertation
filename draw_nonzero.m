@@ -1,6 +1,6 @@
 % Load the data from the file
-data = load('Jf_fast_2.dat');
-data2 = load('J.dat');
+data = load('Ef_fast_2.dat');
+data2 = load('Jf_fast_2.dat');
 
 % Separate the data into x and y components
 x = data(:, 1);
@@ -26,7 +26,7 @@ plot(x_non_zero, y_non_zero, 'b-o', 'MarkerSize', 2, 'LineWidth', 0.15); % Setti
 
 hold on
 
-plot(x2_non_zero, y2_non_zero, 'r-o', 'MarkerSize', 2, 'LineWidth', 0.15);
+%plot(x2_non_zero, y2_non_zero, 'r-o', 'MarkerSize', 2, 'LineWidth', 0.15);
 
 % Add labels and title
 xlabel('X axis');

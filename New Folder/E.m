@@ -52,7 +52,7 @@ Y = zeros(1, 385);
     J(1) = EiRad(R_source_p(1), 1) / Zself(1);
     for p = 1:stp:NoLinesubs %numofgroups = nolinesubs / stp
         SUM = 0 + 0i; % 初始化为复数0
-        for q = 549:stp:p-1 %100m
+        for q = 1:stp:p-1 %100m
            
             SUM = SUM + R_p_q(q, q+1) * Z(p, q) * J(q) * cst;
         end
