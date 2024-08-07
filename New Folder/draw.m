@@ -1,6 +1,6 @@
 % Load the data from the file
-data = load('Jf_fast_2.dat');
-data2 = load('Ef_fast_2.dat')
+data = load('E_fast_matlab_fb.dat');
+data2 = load('E_fast_stp5_matlab_fb.dat')
 
 % Separate the data into x and y components
 x = data(:, 1);
@@ -17,7 +17,7 @@ plot(x, y, 'b-o','MarkerSize',2, 'LineWidth', 0.15); % Setting the LineWidth to 
 
 hold on
 
-%plot(x2, y2, 'r-o','MarkerSize',2, 'LineWidth', 0.15);
+plot(x2, y2, 'r-o','MarkerSize',2, 'LineWidth', 0.15);
 % Add labels and title
 xlabel('X axis');
 ylabel('Y axis');

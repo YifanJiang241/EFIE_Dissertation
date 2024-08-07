@@ -22,7 +22,7 @@ Ysource = 442.0; % 源位置Y坐标
 I = 1.0; % 源电流
 
 cst = 4.8
-stp = 5
+stp = 13
 % cst = 1
 % stp = 1
 
@@ -48,13 +48,13 @@ Y = zeros(1, 385);
     X = data(:, 1)';
     Y = data(:, 2)';
     
-    % Forward Scattering
+    % 计算Forward Scattering
     %% 
     
     J(1) = EiRad(R_source_p(1), 1) / Zself(1);
     for p = 1:stp:NoLinesubs %numofgroups = nolinesubs / stp
-        SUM = 0 + 0i; 
-        for q = 1:stp:p-1 
+        SUM = 0 + 0i; % 初始化为复数0
+        for q = 1:stp:p-1 %100m
            
             SUM = SUM + R_p_q(q, q+1) * Z(p, q) * J(q) * cst;
         end
@@ -65,9 +65,9 @@ Y = zeros(1, 385);
     % 
 
 
-    %% backscattering
+    %% backscattering计算和其他相关计算
 
-    SUM = 0 + 0i; 
+    SUM = 0 + 0i; % 初始化为复数0
     for p = NoLinesubs :stp: 1
         SUM = 0 + 0i;
         for q = NoLinesubs :stp: p+1
@@ -81,7 +81,7 @@ Y = zeros(1, 385);
 
 
     % 打开文件，准备写入，获取文件句柄
-fileID = fopen('J_fast_stp5_matlab_fb.dat', 'w');
+fileID = fopen('J_fast_matlab_fb.dat', 'w');
 
 % 检查文件是否成功打开
 if fileID == -1
@@ -101,22 +101,24 @@ fclose(fileID);
 
 
 % 打开文件，准备写入
-fileID = fopen('E_fast_stp5_matlab_fb.dat', 'w');
+fileID = fopen('E_fast_matlab_fb.dat', 'w');
 
 % 检查文件是否成功打开
 if fileID == -1
     error('Failed to open file.');
 end
 
-Et = complex(zeros(1, NoLinesubs)); 
+Et = complex(zeros(1, NoLinesubs)); % 初始化Et数组
 
 for index = 1:stp:NoLinesubs
-    Et(index) = complex(0.0, 0.0); 
+    Et(index) = complex(0.0, 0.0); % 初始化为复数0
     index
-    for n = 1:stp:index 
+    for n = 1:stp:index %100m
+        % 更新Et[index]值，注意MATLAB索引从1开始
         Et(index) = Et(index) + (J(n) * R_p_q(n, n+1) * Zcomplex(R_surf_obs(n, index))) * cst;
     end
 
+    % 根据公式调整Et[index]值
     Et(index) = EiRad(R_source_obs(index), index) - Et(index); 
 
     % 写入x坐标和Et的20*log10(abs(Et)/sqrt(R_source_obs(index)))到文件
